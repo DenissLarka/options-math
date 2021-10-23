@@ -11,23 +11,6 @@
 		<java.version>17</java.version>
 	</properties>
 
-	<distributionManagement>
-		<repository>
-			<uniqueVersion>true</uniqueVersion>
-			<id>maven-releases</id>
-			<name>maven-releases</name>
-			<url>https://nexus.druvu.com/repository/maven-releases/</url>
-			<layout>default</layout>
-		</repository>
-		<snapshotRepository>
-			<uniqueVersion>false</uniqueVersion>
-			<id>maven-snapshots</id>
-			<name>maven-snapshots</name>
-			<url>https://nexus.druvu.com/repository/maven-snapshots/</url>
-			<layout>default</layout>
-		</snapshotRepository>
-	</distributionManagement>
-
 	<scm>
 		<connection>scm:git:https://github.com/DenissLarka/market-instruments.git</connection>
 		<developerConnection>scm:git:https://github.com/DenissLarka/market-instruments.git</developerConnection>
