@@ -1,6 +1,8 @@
 jdk:
   - 17.0.0.fx-zulu
 before_install:
+  - source "$HOME/.sdkman/bin/sdkman-init.sh"
+  - sdk update
   - sdk install java 17.0.0.fx-zulu
   - sdk use java 17.0.0.fx-zulu
 
