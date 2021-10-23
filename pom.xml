@@ -12,9 +12,9 @@
 	</properties>
 
 	<scm>
-		<connection>scm:git:https://github.com/DenissLarka/market-instruments.git</connection>
-		<developerConnection>scm:git:https://github.com/DenissLarka/market-instruments.git</developerConnection>
-		<url>https://github.com/DenissLarka/market-instruments</url>
+		<connection>scm:git:https://github.com/DenissLarka/options-math.git</connection>
+		<developerConnection>scm:git:https://github.com/DenissLarka/options-math.git</developerConnection>
+		<url>https://github.com/DenissLarka/options-math</url>
 		<tag>HEAD</tag>
 	</scm>
 
