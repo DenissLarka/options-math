@@ -74,6 +74,12 @@
 
     <build>
         <plugins>
+
+             <plugin>
+  <groupId>net.nicoulaj.maven.plugins</groupId>
+  <artifactId>checksum-maven-plugin</artifactId>
+  <version>1.11</version>
+</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
