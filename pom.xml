@@ -1,452 +1,252 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.druvu</groupId>
-
-    <artifactId>options-math</artifactId>
-
-    <version>1.0.1-SNAPSHOT</version>
-
-
-
-
-
-    <name>${project.groupId}:${project.artifactId}</name>
-
-    <description>Math library to calculate prices of a European put or call option based
-
-        on the Black-Scholes pricing model.
-
-        Also calculates Greeks – Delta, Gamma, Theta, Vega and Rho.
-
-    </description>
-
-    <url>https://github.com/DenissLarka/options-math</url>
-
-
-
-    <licenses>
-
-        <license>
-
-            <name>Apache License, Version 2.0</name>
-
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-
-            <distribution>repo</distribution>
-
-        </license>
-
-    </licenses>
-
-
-
-    <developers>
-
-        <developer>
-
-            <name>Deniss LARKA</name>
-
-            <email>deniss.larka@gmail.com</email>
-
-        </developer>
-
-    </developers>
-
-
-
-
-
-    <scm>
-
-        <connection>scm:git:https://github.com/DenissLarka/options-math.git</connection>
-
-        <developerConnection>scm:git:https://github.com/DenissLarka/options-math.git</developerConnection>
-
-        <url>https://github.com/DenissLarka/options-math</url>
-
-        <tag>HEAD</tag>
-
-    </scm>
-
-
-
-    <properties>
-
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <java.version>17</java.version>
-
-        <sonar.organization>denisslarka</sonar.organization>
-
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-
-    </properties>
-
-
-
-
-
-    <dependencies>
-
-
-
-        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-        <!-- TEST -->
-
-        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-        <dependency>
-
-            <groupId>org.testng</groupId>
-
-            <artifactId>testng</artifactId>
-
-            <version>7.9.0</version>
-
-            <scope>test</scope>
-
-            <exclusions>
-
-                <exclusion>
-
-                    <artifactId>slf4j-api</artifactId>
-
-                    <groupId>org.slf4j</groupId>
-
-                </exclusion>
-
-            </exclusions>
-
-        </dependency>
-
-        <dependency>
-
-            <groupId>org.slf4j</groupId>
-
-            <artifactId>slf4j-simple</artifactId>
-
-            <version>2.0.12</version>
-
-            <scope>test</scope>
-
-        </dependency>
-
-        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-
-
-    </dependencies>
-
-
-
-    <build>
-
-        <plugins>
-
-
-
-             <plugin>
-
-  <groupId>net.nicoulaj.maven.plugins</groupId>
-
-  <artifactId>checksum-maven-plugin</artifactId>
-
-  <version>1.11</version>
-
-</plugin>
-
-            <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
-
-                <artifactId>maven-compiler-plugin</artifactId>
-
-                <version>3.12.1</version>
-
-                <configuration>
-
-                    <source>${java.version}</source>
-
-                    <target>${java.version}</target>
-
-                    <release>${java.version}</release>
-
-                    <debug>true</debug>
-
-                    <showDeprecation>true</showDeprecation>
-
-                    <showWarnings>true</showWarnings>
-
-                </configuration>
-
-            </plugin>
-
-
-
-
-
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-            <!-- PUBLISHING -->
-
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-            <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
-
-                <artifactId>maven-source-plugin</artifactId>
-
-                <version>3.3.0</version>
-
-                <executions>
-
-                    <execution>
-
-                        <id>attach-sources</id>
-
-                        <phase>verify</phase>
-
-                        <goals>
-
-                            <goal>jar-no-fork</goal>
-
-                        </goals>
-
-                    </execution>
-
-                </executions>
-
-            </plugin>
-
-            <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
-
-                <artifactId>maven-javadoc-plugin</artifactId>
-
-                <version>3.6.3</version>
-
-                <executions>
-
-                    <execution>
-
-                        <id>attach-javadocs</id>
-
-                        <goals>
-
-                            <goal>jar</goal>
-
-                        </goals>
-
-                    </execution>
-
-                </executions>
-
-                <configuration>
-
-                    <show>public</show>
-
-                    <source>${java.version}</source>
-
-                </configuration>
-
-            </plugin>
-
-            <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
-
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-
-                <version>3.5.0</version>
-
-            </plugin>
-
-
-
-
-
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-            <!-- STYLE CHECK -->
-
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-            <plugin>
-
-                <groupId>com.github.spotbugs</groupId>
-
-                <artifactId>spotbugs-maven-plugin</artifactId>
-
-                <version>4.8.3.1</version>
-
-                <configuration>
-
-                    <effort>Max</effort>
-
-                    <threshold>Low</threshold>
-
-                    <xmlOutput>true</xmlOutput>
-
-                </configuration>
-
-                <executions>
-
-                    <execution>
-
-                        <goals>
-
-                            <goal>check</goal>
-
-                        </goals>
-
-                    </execution>
-
-                </executions>
-
-            </plugin>
-
-
-
-            <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
-
-                <artifactId>maven-pmd-plugin</artifactId>
-
-                <version>3.21.2</version>
-
-                <configuration>
-
-                    <printFailingErrors>true</printFailingErrors>
-
-                    <failurePriority>3</failurePriority>
-
-                    <includeTests>true</includeTests>
-
-                    <linkXRef>false</linkXRef>
-
-                </configuration>
-
-                <executions>
-
-                    <execution>
-
-                        <goals>
-
-                            <goal>check</goal>
-
-                            <goal>cpd-check</goal>
-
-                        </goals>
-
-                    </execution>
-
-                </executions>
-
-            </plugin>
-
-            <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
-
-                <artifactId>maven-checkstyle-plugin</artifactId>
-
-                <version>3.3.1</version>
-
-                <configuration>
-
-                    <configLocation>google_checks.xml</configLocation>
-
-                </configuration>
-
-            </plugin>
-
-            <plugin>
-
-                <groupId>org.apache.maven.plugins</groupId>
-
-                <artifactId>maven-enforcer-plugin</artifactId>
-
-                <version>3.4.1</version>
-
-                <executions>
-
-                    <execution>
-
-                        <id>enforce-versions</id>
-
-                        <goals>
-
-                            <goal>enforce</goal>
-
-                        </goals>
-
-                        <configuration>
-
-                            <rules>
-
-                                <banDuplicatePomDependencyVersions/>
-
-                                <banTransitiveDependencies>
-
-                                    <excludes>
-
-                                        <exclude>com.github.spotbugs</exclude>
-
-                                        <exclude>com.puppycrawl.tools</exclude>
-
-                                        <exclude>*:*:*:*:test:*</exclude>
-
-                                        <exclude>org.openjfx:*:*:*:*:*</exclude>
-
-                                    </excludes>
-
-                                </banTransitiveDependencies>
-
-                                <reactorModuleConvergence/>
-
-                                <dependencyConvergence>
-
-
-
-                                </dependencyConvergence>
-
-                                <reactorModuleConvergence/>
-
-                                <requireJavaVersion>
-
-                                    <version>${java.version}</version>
-
-                                </requireJavaVersion>
-
-                            </rules>
-
-                        </configuration>
-
-                    </execution>
-
-                </executions>
-
-            </plugin>
-
-
-
-        </plugins>
-
-    </build>
-
-
-
-
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.druvu</groupId>
+	<artifactId>options-math</artifactId>
+	<version>1.0.1-SNAPSHOT</version>
+
+
+	<name>${project.groupId}:${project.artifactId}</name>
+
+	<description>Math library to calculate prices of a European put or call option based
+		on the Black-Scholes pricing model.
+		Also calculates Greeks – Delta, Gamma, Theta, Vega and Rho.
+	</description>
+
+	<url>https://github.com/DenissLarka/options-math</url>
+
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Deniss LARKA</name>
+			<email>deniss.larka@gmail.com</email>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/DenissLarka/options-math.git</connection>
+		<developerConnection>scm:git:https://github.com/DenissLarka/options-math.git</developerConnection>
+		<url>https://github.com/DenissLarka/options-math</url>
+		<tag>HEAD</tag>
+	</scm>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>17</java.version>
+		<sonar.organization>denisslarka</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	</properties>
+
+
+	<dependencies>
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- TEST -->
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.9.0</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>2.0.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>net.nicoulaj.maven.plugins</groupId>
+				<artifactId>checksum-maven-plugin</artifactId>
+				<version>1.11</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.12.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<release>${java.version}</release>
+					<debug>true</debug>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+
+			<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<!-- PUBLISHING -->
+			<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.6.3</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<show>public</show>
+					<source>${java.version}</source>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.5.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+						<configuration>
+							<gpgArguments>
+								<arg>--homedir</arg>
+								<arg>${gpg.homedir}</arg>
+							</gpgArguments>
+							<keyname>${gpg.keyname}</keyname>
+							<useAgent>true</useAgent>
+						</configuration>
+					</execution>
+				</executions>
+
+
+			</plugin>
+
+			<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<!-- STYLE CHECK -->
+			<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>4.8.3.1</version>
+				<configuration>
+					<effort>Max</effort>
+					<threshold>Low</threshold>
+					<xmlOutput>true</xmlOutput>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.21.2</version>
+				<configuration>
+					<printFailingErrors>true</printFailingErrors>
+					<failurePriority>3</failurePriority>
+					<includeTests>true</includeTests>
+					<linkXRef>false</linkXRef>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+							<goal>cpd-check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<configLocation>google_checks.xml</configLocation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.4.1</version>
+				<executions>
+					<execution>
+						<id>enforce-versions</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<banDuplicatePomDependencyVersions/>
+								<banTransitiveDependencies>
+									<excludes>
+										<exclude>com.github.spotbugs</exclude>
+										<exclude>com.puppycrawl.tools</exclude>
+										<exclude>*:*:*:*:test:*</exclude>
+										<exclude>org.openjfx:*:*:*:*:*</exclude>
+									</excludes>
+								</banTransitiveDependencies>
+								<reactorModuleConvergence/>
+								<dependencyConvergence>
+								</dependencyConvergence>
+								<reactorModuleConvergence/>
+								<requireJavaVersion>
+									<version>${java.version}</version>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
 
 </project>
 
