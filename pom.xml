@@ -79,11 +79,6 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>net.nicoulaj.maven.plugins</groupId>
-				<artifactId>checksum-maven-plugin</artifactId>
-				<version>1.11</version>
-			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -99,9 +94,6 @@
 				</configuration>
 			</plugin>
 
-			<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-			<!-- PUBLISHING -->
-			<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -131,37 +123,10 @@
 				<configuration>
 					<show>public</show>
 					<source>${java.version}</source>
+					<doclint>none</doclint>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>3.5.0</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-						<configuration>
-							<gpgArguments>
-								<arg>--homedir</arg>
-								<arg>${gpg.homedir}</arg>
-							</gpgArguments>
-							<keyname>${gpg.keyname}</keyname>
-							<useAgent>true</useAgent>
-						</configuration>
-					</execution>
-				</executions>
 
-
-			</plugin>
 
 			<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 			<!-- STYLE CHECK -->
@@ -225,12 +190,6 @@
 							<rules>
 								<banDuplicatePomDependencyVersions/>
 								<banTransitiveDependencies>
-									<excludes>
-										<exclude>com.github.spotbugs</exclude>
-										<exclude>com.puppycrawl.tools</exclude>
-										<exclude>*:*:*:*:test:*</exclude>
-										<exclude>org.openjfx:*:*:*:*:*</exclude>
-									</excludes>
 								</banTransitiveDependencies>
 								<reactorModuleConvergence/>
 								<dependencyConvergence>
@@ -247,6 +206,57 @@
 
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-project-info-reports-plugin</artifactId>
+						<version>3.5.0</version>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>3.1.0</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<gpgArguments>
+										<arg>--homedir</arg>
+										<arg>${gpg.homedir}</arg>
+									</gpgArguments>
+									<keyname>${gpg.keyname}</keyname>
+									<useAgent>true</useAgent>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<version>0.3.0</version>
+						<extensions>true</extensions>
+						<configuration>
+							<publishingServerId>central</publishingServerId>
+							<tokenAuth>true</tokenAuth>
+							<checksums>required</checksums>
+							<skipPublishing>false</skipPublishing>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+	</profiles>
 
 </project>
 

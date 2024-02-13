@@ -20,6 +20,30 @@ public final class DoubleRounder {
 		return Math.round(value * ROUND_SCALE_2) / ROUND_SCALE_2;
 	}
 
+	/**
+	 * Round the given value to a specific scale.
+	 *
+	 * @param value The value to be rounded.
+	 * @param scale The scale to which the value should be rounded.
+	 *              Can be negative
+	 *              <table class="borderless">
+	 *              <caption style="display:none"></caption>
+	 *              <thead style="text-align:left">
+	 *                <tr><th>value</th><th>scale</th><th>result</th></tr>
+	 *              </thead>
+	 *              <tbody style="text-align:left">
+	 *                <tr><td>111.11111111d</td><td>3</td><td>111.111d</td></tr>
+	 *                <tr><td>111.11111111d</td><td>2</td><td>111.11d</td></tr>
+	 *                <tr><td>111.11111111d</td><td>1</td><td>111.1d</td></tr>
+	 *                <tr><td>111.11111111d</td><td>0</td><td>111.0d</td></tr>
+	 *                <tr><td>111.11111111d</td><td>-1</td><td>110.0d</td></tr>
+	 *                <tr><td>111.11111111d</td><td>-2</td><td>100.0d</td></tr>
+	 *                <tr><td>111.11111111d</td><td>-3</td><td>0.0d</td></tr>
+	 *                <tr><td>1111.11111111d</td><td>-3</td><td>1000.0d</td></tr>
+	 *              </tbody>
+	 *              </table>
+	 * @return The rounded value.
+	 */
 	public static double round(double value, int scale) {
 		double scaleDbl = scale(scale);
 		return Math.round(value * scaleDbl) / scaleDbl;
