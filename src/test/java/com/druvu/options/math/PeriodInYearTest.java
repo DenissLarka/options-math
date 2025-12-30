@@ -1,8 +1,6 @@
 package com.druvu.options.math;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
