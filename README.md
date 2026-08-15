@@ -1,10 +1,13 @@
 # options-math
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.druvu/options-math.svg)](https://central.sonatype.com/artifact/com.druvu/options-math)
+[![Maven Central](https://img.shields.io/maven-central/v/com.druvu/options-math.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/com.druvu/options-math)
+![Java](https://img.shields.io/badge/Java-17-blue)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DenissLarka_options-math&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DenissLarka_options-math)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=DenissLarka_options-math&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=DenissLarka_options-math)
 
 Java library to calculate European option prices and Greeks using the Black-Scholes pricing model.
+
+Project page: [druvu.com/projects/options-math](https://druvu.com/projects/options-math.html)
 
 ## Installation
 
